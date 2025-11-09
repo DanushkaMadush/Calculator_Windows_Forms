@@ -13,8 +13,9 @@ namespace Calculator
     public partial class Form1 : Form
     {
 
-        double firstNumber;
-        string operation;
+        double firstNumber = 0;
+        string operation = string.Empty;
+        bool isOperationClicked = false;
 
         public Form1()
         {
@@ -82,7 +83,7 @@ namespace Calculator
         {
             firstNumber = Convert.ToDouble(textBox1.Text);
             operation = "-";
-            textBox1.Text = operation + textBox1.Text;
+            textBox1.Text = textBox1.Text + operation;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
@@ -101,7 +102,9 @@ namespace Calculator
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            double secondNumber = Convert.ToDouble(textBox1.Text);
+            int operatorIndex = textBox1.Text.IndexOf(operation);
+            string secondPart = textBox1.Text.Substring(operatorIndex + 1);
+            double secondNumber = Convert.ToDouble(secondPart);
             double result;
 
             //Add
@@ -131,15 +134,16 @@ namespace Calculator
             //Divide
             if (operation == "/")
             {
-                if (secondNumber > 0)
+                if (secondNumber == 0)
+                {
+                    textBox1.Text = "Error";
+                    MessageBox.Show("Cannot divide by zero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
                 {
                     result = firstNumber / secondNumber;
                     textBox1.Text = Convert.ToString(result);
                     firstNumber = result;
-                }
-                else
-                {
-                    textBox1.Text = "Cannot divided by zero";
                 }
                 
             }
