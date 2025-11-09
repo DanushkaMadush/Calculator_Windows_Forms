@@ -75,28 +75,28 @@ namespace Calculator
         {
             firstNumber = Convert.ToDouble(textBox1.Text);
             operation = "+";
-            textBox1.Clear();
+            textBox1.Text = textBox1.Text + operation;
         }
 
         private void btnSub_Click(object sender, EventArgs e)
         {
             firstNumber = Convert.ToDouble(textBox1.Text);
             operation = "-";
-            textBox1.Clear();
+            textBox1.Text = operation + textBox1.Text;
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
             firstNumber = Convert.ToDouble(textBox1.Text);
             operation = "*";
-            textBox1.Clear();
+            textBox1.Text = textBox1.Text + operation;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
             firstNumber = Convert.ToDouble(textBox1.Text);
             operation = "/";
-            textBox1.Clear();
+            textBox1.Text = textBox1.Text + operation;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -131,9 +131,17 @@ namespace Calculator
             //Divide
             if (operation == "/")
             {
-                result = firstNumber / secondNumber;
-                textBox1.Text = Convert.ToString(result);
-                firstNumber = result;
+                if (secondNumber > 0)
+                {
+                    result = firstNumber / secondNumber;
+                    textBox1.Text = Convert.ToString(result);
+                    firstNumber = result;
+                }
+                else
+                {
+                    textBox1.Text = "Cannot divided by zero";
+                }
+                
             }
         }
 
