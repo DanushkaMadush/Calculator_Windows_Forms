@@ -74,6 +74,17 @@ namespace Calculator
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
+            if (!string.IsNullOrEmpty(textBox1.Text))
+            {
+                char lastChar = textBox1.Text[textBox1.Text.Length - 1];
+                if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+                {
+                    MessageBox.Show("An operator is already selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             operation = "+";
 
             if (string.IsNullOrWhiteSpace(textBox1.Text))
@@ -90,6 +101,16 @@ namespace Calculator
 
         private void btnSub_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(textBox1.Text))
+            {
+                char lastChar = textBox1.Text[textBox1.Text.Length - 1];
+                if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+                {
+                    MessageBox.Show("An operator is already selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             operation = "-";
 
             if (string.IsNullOrWhiteSpace(textBox1.Text))
@@ -106,6 +127,16 @@ namespace Calculator
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(textBox1.Text))
+            {
+                char lastChar = textBox1.Text[textBox1.Text.Length - 1];
+                if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+                {
+                    MessageBox.Show("An operator is already selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             operation = "*";
 
             if (string.IsNullOrWhiteSpace(textBox1.Text))
@@ -122,6 +153,16 @@ namespace Calculator
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(textBox1.Text))
+            {
+                char lastChar = textBox1.Text[textBox1.Text.Length - 1];
+                if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+                {
+                    MessageBox.Show("An operator is already selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             operation = "/";
 
             if (string.IsNullOrWhiteSpace(textBox1.Text))
@@ -138,6 +179,22 @@ namespace Calculator
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(operation) || string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("No operation selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(textBox1.Text))
+            {
+                char lastChar = textBox1.Text[textBox1.Text.Length - 1];
+                if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+                {
+                    MessageBox.Show("Insert second number to complete operation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             int operatorIndex = textBox1.Text.IndexOf(operation);
             string secondPart = textBox1.Text.Substring(operatorIndex + 1);
             double secondNumber = Convert.ToDouble(secondPart);
