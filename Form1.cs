@@ -74,30 +74,66 @@ namespace Calculator
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            firstNumber = Convert.ToDouble(textBox1.Text);
             operation = "+";
-            textBox1.Text = textBox1.Text + operation;
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                firstNumber = 0;
+                textBox1.Text = "0+";
+            }
+            else
+            {
+                firstNumber = Convert.ToDouble(textBox1.Text);
+                textBox1.Text = textBox1.Text + operation;
+            }
         }
 
         private void btnSub_Click(object sender, EventArgs e)
         {
-            firstNumber = Convert.ToDouble(textBox1.Text);
             operation = "-";
-            textBox1.Text = textBox1.Text + operation;
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                firstNumber = 0;
+                textBox1.Text = "0-";
+            }
+            else
+            {
+                firstNumber = Convert.ToDouble(textBox1.Text);
+                textBox1.Text = textBox1.Text + operation;
+            }
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            firstNumber = Convert.ToDouble(textBox1.Text);
             operation = "*";
-            textBox1.Text = textBox1.Text + operation;
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                firstNumber = 0;
+                textBox1.Text = "0*";
+            }
+            else
+            {
+                firstNumber = Convert.ToDouble(textBox1.Text);
+                textBox1.Text = textBox1.Text + operation;
+            }
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            firstNumber = Convert.ToDouble(textBox1.Text);
             operation = "/";
-            textBox1.Text = textBox1.Text + operation;
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                firstNumber = 0;
+                textBox1.Text = "0/";
+            }
+            else
+            {
+                firstNumber = Convert.ToDouble(textBox1.Text);
+                textBox1.Text = textBox1.Text + operation;
+            }
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -138,14 +174,14 @@ namespace Calculator
                 {
                     textBox1.Text = "Error";
                     MessageBox.Show("Cannot divide by zero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox1.ResetText();
                 }
                 else
                 {
                     result = firstNumber / secondNumber;
                     textBox1.Text = Convert.ToString(result);
                     firstNumber = result;
-                }
-                
+                } 
             }
         }
 
